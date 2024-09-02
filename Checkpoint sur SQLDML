@@ -1,0 +1,149 @@
+1- 
+create database SQLMDL
+
+
+
+create table VEHICL (
+VEHICULEID INT PRIMARY KEY,
+LicensePlate VARCHAR(50)NOT NULL,
+Make VARCHAR(50) NOT NULL,
+Model VARCHAR(50) NOT NULL,
+YEARR INT NOT NULL,
+COLOR VARCHAR(50) NOT NULL,
+VIN VARCHAR(50) NOT NULL,
+);
+
+alter table vehicl
+
+
+
+create table PILOTES (
+DriverID INT PRIMARY KEY,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+LicenseNumber VARCHAR(50) NOT NULL,
+Phone VARCHAR(50) NOT NULL,
+Addresss Varchar(50) NOT NULL,
+City VARCHAR(50) NOT NULL,
+Statee VARCHAR(50) NOT NULL,
+ZipCode VARCHAR(50) NOT NULL,
+);
+
+SELECT * FROM PILOTES;
+
+
+DROP TABLE VOYAGES;
+
+create table VOYAGES (
+TripId INT PRIMARY KEY NOT NULL ,
+VehiculeID INT,
+DriverID INT ,
+StartDate DATE NOT NULL,
+EndDate DATE NOT NULL,
+StartLocation VARCHAR(50) NOT NULL,
+EndLocation VARCHAR(50) NOT NULL,
+Distance INT ,
+constraint vehicl_fk FOREIGN KEY (vehiculeID) REFERENCES vehicl(vehiculeID)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+constraint pilotes_fk FOREIGN KEY (DriverID) REFERENCES pilotes(DriverID)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+);
+
+
+select*from VOYAGES;
+
+DROP TABLE Entretient;
+
+create table Entretient (
+MaintenanceID INT PRIMARY KEY NOT NULL,
+VehiculeID INT,
+MaintenanceDate DATE NOT NULL,
+Descriptionn VARCHAR (50)NOT NULL,
+Cost DECIMAL NOT NULL,
+
+
+constraint  entretient_vehicl_fk FOREIGN KEY (vehiculeID) REFERENCES vehicl(vehiculeID)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+);
+
+
+
+
+ INSERT INTO Vehicl (VEHICULEID,LicensePlate, Make, Model, YearR, Color, VIN)
+VALUES (1,'ABC123', 'Toyota', 'Corolla', 2020, 'White', '1HGCM82633A004352'),
+       (3,'XYZ789', 'Ford', 'Fusion', 2018, 'Blue', '2HGCM82633A004353');
+
+SELECT * FROM VEHICL;
+DELETE FROM VEHICL WHERE VEHICULEID = 1;
+
+INSERT INTO Pilotes ( DRIVERID,FirstName, LastName, LicenseNumber, Phone, Addresss, City, Statee, ZipCode)
+VALUES (5,'Michael', 'Smith', 'D1234567', '1234567890', '123 rue Main', 'N’importe quelle ville', 'CA', '12345'),
+       (6,'Sarah', 'Connor', 'D7654321', '0987654321', '456 Elm St', 'Otherville', 'NY', '54321');
+
+SELECT * FROM Pilotes;
+
+
+
+INSERT INTO VOYAGES(TRIPID,VehiculeID, DriverID, StartDate, EndDate, StartLocation, EndLocation, Distance)
+VALUES (5,1, 3, '2024-07-01', '2024-07-02', 'Los Angeles', 'San Francisco', 380),
+       (6,2, 4, '2024-07-03', '2024-07-04', 'New York', 'Washington D.C.', 225);
+
+SELECT * FROM VOYAGES;
+
+
+	   INSERT INTO entretient ( maintenanceID,VehiculeID, MaintenanceDate, Descriptionn, Cost)
+VALUES ('7',1, '2024-06-15', 'Vidange d’huile', 50.00),
+       ('8',2, '2024-06-20', 'Remplacement du pneu', 300.00);
+
+select*from ENTRETIEN;
+
+
+2- Mise à jour de la table ENTRETIENT
+
+UPDATE ENTRETIENT
+SET Cost = 350.00
+WHERE VehicUleID = 2 AND MaintenanceDate = '2024-06-20';
+
+3- Suppression au niveau de la table Vehicule
+delete from VEHICL
+WHERE VEHICL.LicensePlate= 'ABC123';
+
+4- Nouvelle insertion au niveau de la table Voyage
+
+INSERT INTO voyages (tripid,VehiculeID, DriverID, StartDate, EndDate, StartLocation, EndLocation, Distance)
+VALUES ( 9,2,3, '2024-07-05', '2024-07-06', 'Boston', 'Philadelphie', 300);
+
+SELECT * FROM VOYAGES;
+
+
+5- Mise à jour 
+UPDATE Vehicl
+SET Color = 'Red'
+WHERE LicensePlate = 'XYZ789';
+
+
+
+select*from entretient;
+6- Insertion
+
+INSERT INTO ENTRETIENT (MaintenanceID,VehiculeID, MaintenanceDate, Descriptionn, Cost)
+VALUES ('10',1, '2024-07-10', 'Inspection des freins', 100.00);
+
+select*from PILOTES 
+
+7-
+UPDATE Pilotes
+SET Phone = '2223334444'
+WHERE LicenseNumber = 'D1234567';
+
+select * from voyages;
+8- suppression
+DELETE FROM voyages
+WHERE VOYAGES.VEHICULEID = 2 AND StartDate = '2024-07-03';
+
+
+
+select*from  vehicl
